@@ -39,8 +39,8 @@
     [self addSubview:button];
     [self.buttonArray addObject:button];
     
-    button = [self editButtonWithTitle:@"标签"];
-    [button setTitle:@"标签ing" forState:UIControlStateSelected];
+    button = [self editButtonWithTitle:@"输入"];
+    [button setTitle:@"标签" forState:UIControlStateSelected];
     [button addTarget:self action:@selector(switchButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     [self.buttonArray addObject:button];
