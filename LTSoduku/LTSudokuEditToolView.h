@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LTSudokuEditToolViewDelegate <NSObject>
+
+- (void)setInputValue:(NSString *)value;
+
+- (void)setNoteValue:(NSString *)value;
+
+@end
+
 @interface LTSudokuEditToolView : UIView
+
+@property (nonatomic, weak) id<LTSudokuEditToolViewDelegate> delegate;
+
 
 @end

@@ -79,9 +79,13 @@
     UIButton *switchButton = [self.buttonArray lastObject];
     
     if (switchButton.selected) {    // 选中状态就是添加note模式
-        
-    } else {                        // 未选中则是
-        
+        if ([self.delegate respondsToSelector:@selector(setNoteValue:)]) {
+            [self.delegate setNoteValue:button.titleLabel.text];
+        }
+    } else {                        // 未选中则是添加输入的值
+        if ([self.delegate respondsToSelector:@selector(setInputValue:)]) {
+            [self.delegate setInputValue:button.titleLabel.text];
+        }
     }
     
 }
