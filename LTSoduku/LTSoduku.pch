@@ -1,0 +1,35 @@
+//
+//  LTSoduku.pch
+//  LTSoduku
+//
+//  Created by lt on 2017/9/4.
+//  Copyright © 2017年 tl. All rights reserved.
+//
+
+#ifndef LTSoduku_pch
+#define LTSoduku_pch
+
+
+#import "LTGlobalState.h"
+#import "UIView+Extends.h"
+#import "UIView+Extension.h"
+#import "UIColorExtend.h"
+#import "LTSudokuLogic.h"
+
+#define ISIPAD      (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+#define ISIPHONE    (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_4_OR_LESS (ISIPHONE && SCREEN_MAX_LENGTH < 568.0)
+#define IS_IPHONE_5 (ISIPHONE && SCREEN_MAX_LENGTH == 568.0)
+#define IS_IPHONE_5_OR_LESS (ISIPHONE && SCREEN_MAX_LENGTH < 667.0)
+#define IS_IPHONE_6 (ISIPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (ISIPHONE && SCREEN_MAX_LENGTH == 736.0)
+
+
+#endif /* LTSoduku_pch */

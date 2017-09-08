@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "LTSudukuGameView.h"
 
 @interface ViewController ()
 
@@ -16,7 +17,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.navigationItem.title = @"数独";
+    
+    [LTSudokuLogic reStartGame];
+    
+    LTSudukuGameView *sudokuView = [[LTSudukuGameView alloc] initWithFrame:CGRectMake(0,[GState defaultTopSpace] + 64, self.view.width, self.view.height - 64)];
+    [self.view addSubview:sudokuView];
 }
 
 

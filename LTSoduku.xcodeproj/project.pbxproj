@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69132AAD1F5FCE7C00511D66 /* LTSudokuLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 69132AAC1F5FCE7C00511D66 /* LTSudokuLogic.m */; };
+		69133CCA1F5E53BA00247AAA /* LTSodukuCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69133CC91F5E53BA00247AAA /* LTSodukuCellModel.m */; };
+		69133CCD1F5E975D00247AAA /* LTSudokuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69133CCC1F5E975D00247AAA /* LTSudokuCollectionViewCell.m */; };
+		6956B7C91F61377F00927312 /* LTSudokuEditToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */; };
 		6968E92D1F5D5082002EB392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E92C1F5D5082002EB392 /* main.m */; };
 		6968E9301F5D5082002EB392 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E92F1F5D5082002EB392 /* AppDelegate.m */; };
 		6968E9331F5D5082002EB392 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9321F5D5082002EB392 /* ViewController.m */; };
@@ -15,6 +19,11 @@
 		6968E93B1F5D5082002EB392 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6968E9391F5D5082002EB392 /* LaunchScreen.storyboard */; };
 		6968E9461F5D5082002EB392 /* LTSodukuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9451F5D5082002EB392 /* LTSodukuTests.m */; };
 		6968E9511F5D5082002EB392 /* LTSodukuUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9501F5D5082002EB392 /* LTSodukuUITests.m */; };
+		6968E9611F5D50FD002EB392 /* UIColorExtend.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9601F5D50FD002EB392 /* UIColorExtend.m */; };
+		6968E9651F5D573F002EB392 /* LTSudukuGameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9641F5D573F002EB392 /* LTSudukuGameView.m */; };
+		6968E9691F5D5B9B002EB392 /* LTGlobalState.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9681F5D5B9B002EB392 /* LTGlobalState.m */; };
+		6968E9701F5D6767002EB392 /* UIView+Extends.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E96D1F5D6767002EB392 /* UIView+Extends.m */; };
+		6968E9711F5D6767002EB392 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E96F1F5D6767002EB392 /* UIView+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69132AAB1F5FCE7C00511D66 /* LTSudokuLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudokuLogic.h; sourceTree = "<group>"; };
+		69132AAC1F5FCE7C00511D66 /* LTSudokuLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuLogic.m; sourceTree = "<group>"; };
+		69133CC81F5E53BA00247AAA /* LTSodukuCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSodukuCellModel.h; sourceTree = "<group>"; };
+		69133CC91F5E53BA00247AAA /* LTSodukuCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSodukuCellModel.m; sourceTree = "<group>"; };
+		69133CCB1F5E975D00247AAA /* LTSudokuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudokuCollectionViewCell.h; sourceTree = "<group>"; };
+		69133CCC1F5E975D00247AAA /* LTSudokuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuCollectionViewCell.m; sourceTree = "<group>"; };
+		6956B7C71F61377F00927312 /* LTSudokuEditToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudokuEditToolView.h; sourceTree = "<group>"; };
+		6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuEditToolView.m; sourceTree = "<group>"; };
 		6968E9281F5D5082002EB392 /* LTSoduku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTSoduku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6968E92C1F5D5082002EB392 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6968E92E1F5D5082002EB392 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +68,17 @@
 		6968E94C1F5D5082002EB392 /* LTSodukuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LTSodukuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6968E9501F5D5082002EB392 /* LTSodukuUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTSodukuUITests.m; sourceTree = "<group>"; };
 		6968E9521F5D5082002EB392 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6968E95F1F5D50FD002EB392 /* UIColorExtend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColorExtend.h; sourceTree = "<group>"; };
+		6968E9601F5D50FD002EB392 /* UIColorExtend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColorExtend.m; sourceTree = "<group>"; };
+		6968E9631F5D573F002EB392 /* LTSudukuGameView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudukuGameView.h; sourceTree = "<group>"; };
+		6968E9641F5D573F002EB392 /* LTSudukuGameView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudukuGameView.m; sourceTree = "<group>"; };
+		6968E9671F5D5B9B002EB392 /* LTGlobalState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTGlobalState.h; sourceTree = "<group>"; };
+		6968E9681F5D5B9B002EB392 /* LTGlobalState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTGlobalState.m; sourceTree = "<group>"; };
+		6968E96B1F5D5D72002EB392 /* LTSoduku.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSoduku.pch; sourceTree = "<group>"; };
+		6968E96C1F5D6767002EB392 /* UIView+Extends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extends.h"; sourceTree = "<group>"; };
+		6968E96D1F5D6767002EB392 /* UIView+Extends.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extends.m"; sourceTree = "<group>"; };
+		6968E96E1F5D6767002EB392 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		6968E96F1F5D6767002EB392 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69133CC71F5E539600247AAA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				69133CC81F5E53BA00247AAA /* LTSodukuCellModel.h */,
+				69133CC91F5E53BA00247AAA /* LTSodukuCellModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		6968E91F1F5D5082002EB392 = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +138,10 @@
 		6968E92A1F5D5082002EB392 /* LTSoduku */ = {
 			isa = PBXGroup;
 			children = (
+				69133CC71F5E539600247AAA /* Model */,
+				6968E9661F5D5B7B002EB392 /* GlobalState */,
+				6968E9621F5D56FC002EB392 /* View */,
+				6968E95E1F5D50ED002EB392 /* Extend */,
 				6968E92E1F5D5082002EB392 /* AppDelegate.h */,
 				6968E92F1F5D5082002EB392 /* AppDelegate.m */,
 				6968E9311F5D5082002EB392 /* ViewController.h */,
@@ -109,6 +150,7 @@
 				6968E9371F5D5082002EB392 /* Assets.xcassets */,
 				6968E9391F5D5082002EB392 /* LaunchScreen.storyboard */,
 				6968E93C1F5D5082002EB392 /* Info.plist */,
+				6968E96B1F5D5D72002EB392 /* LTSoduku.pch */,
 				6968E92B1F5D5082002EB392 /* Supporting Files */,
 			);
 			path = LTSoduku;
@@ -138,6 +180,43 @@
 				6968E9521F5D5082002EB392 /* Info.plist */,
 			);
 			path = LTSodukuUITests;
+			sourceTree = "<group>";
+		};
+		6968E95E1F5D50ED002EB392 /* Extend */ = {
+			isa = PBXGroup;
+			children = (
+				6968E96C1F5D6767002EB392 /* UIView+Extends.h */,
+				6968E96D1F5D6767002EB392 /* UIView+Extends.m */,
+				6968E96E1F5D6767002EB392 /* UIView+Extension.h */,
+				6968E96F1F5D6767002EB392 /* UIView+Extension.m */,
+				6968E95F1F5D50FD002EB392 /* UIColorExtend.h */,
+				6968E9601F5D50FD002EB392 /* UIColorExtend.m */,
+			);
+			name = Extend;
+			sourceTree = "<group>";
+		};
+		6968E9621F5D56FC002EB392 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6968E9631F5D573F002EB392 /* LTSudukuGameView.h */,
+				6968E9641F5D573F002EB392 /* LTSudukuGameView.m */,
+				69133CCB1F5E975D00247AAA /* LTSudokuCollectionViewCell.h */,
+				69133CCC1F5E975D00247AAA /* LTSudokuCollectionViewCell.m */,
+				6956B7C71F61377F00927312 /* LTSudokuEditToolView.h */,
+				6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6968E9661F5D5B7B002EB392 /* GlobalState */ = {
+			isa = PBXGroup;
+			children = (
+				6968E9671F5D5B9B002EB392 /* LTGlobalState.h */,
+				6968E9681F5D5B9B002EB392 /* LTGlobalState.m */,
+				69132AAB1F5FCE7C00511D66 /* LTSudokuLogic.h */,
+				69132AAC1F5FCE7C00511D66 /* LTSudokuLogic.m */,
+			);
+			name = GlobalState;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,9 +355,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6968E9651F5D573F002EB392 /* LTSudukuGameView.m in Sources */,
 				6968E9331F5D5082002EB392 /* ViewController.m in Sources */,
+				69133CCA1F5E53BA00247AAA /* LTSodukuCellModel.m in Sources */,
 				6968E9301F5D5082002EB392 /* AppDelegate.m in Sources */,
+				6968E9701F5D6767002EB392 /* UIView+Extends.m in Sources */,
+				69133CCD1F5E975D00247AAA /* LTSudokuCollectionViewCell.m in Sources */,
 				6968E92D1F5D5082002EB392 /* main.m in Sources */,
+				6956B7C91F61377F00927312 /* LTSudokuEditToolView.m in Sources */,
+				6968E9691F5D5B9B002EB392 /* LTGlobalState.m in Sources */,
+				69132AAD1F5FCE7C00511D66 /* LTSudokuLogic.m in Sources */,
+				6968E9711F5D6767002EB392 /* UIView+Extension.m in Sources */,
+				6968E9611F5D50FD002EB392 /* UIColorExtend.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +514,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SH6S8EAT65;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LTSoduku/LTSoduku.pch";
 				INFOPLIST_FILE = LTSoduku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tl.LTSoduku;
@@ -438,6 +528,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SH6S8EAT65;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/LTSoduku/LTSoduku.pch";
 				INFOPLIST_FILE = LTSoduku/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tl.LTSoduku;
@@ -514,6 +606,7 @@
 				6968E9571F5D5082002EB392 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6968E9581F5D5083002EB392 /* Build configuration list for PBXNativeTarget "LTSodukuTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +615,7 @@
 				6968E95A1F5D5083002EB392 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6968E95B1F5D5083002EB392 /* Build configuration list for PBXNativeTarget "LTSodukuUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +624,7 @@
 				6968E95D1F5D5083002EB392 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
