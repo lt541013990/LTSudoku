@@ -14,6 +14,8 @@
 
 - (void)setNoteValue:(NSString *)value;
 
+- (void)clearAllValue;
+
 @end
 
 @interface LTSudokuEditToolView : UIView

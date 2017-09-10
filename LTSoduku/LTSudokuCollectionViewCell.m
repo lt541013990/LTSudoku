@@ -67,6 +67,7 @@
     if (!_valueLabel)
     {
         _valueLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _valueLabel.numberOfLines = 3;
     }
     return _valueLabel;
 }
