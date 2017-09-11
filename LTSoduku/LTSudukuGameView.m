@@ -45,7 +45,7 @@
 - (void)layoutSubviews
 {
     self.sudokuView.frame = CGRectMake([GState defaultTopSpace], -64, [GState sudokuViewWidth], [GState sudokuViewWidth] + 64);
-    self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], 70);
+    self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], (self.width - [GState sudokuButtonSpace] * 5) / 6.5 * 2 + [GState sudokuButtonSpace]);
 }
 
 # pragma mark - private
