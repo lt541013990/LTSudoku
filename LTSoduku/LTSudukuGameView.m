@@ -54,8 +54,8 @@
 {
     LTSudokuCollectionViewCell *selectedCell = (LTSudokuCollectionViewCell *)[self.sudokuView cellForItemAtIndexPath:_selectedIndex];
     
-    NSInteger x = _selectedIndex.section;
-    NSInteger y = _selectedIndex.row;
+    NSInteger y = _selectedIndex.section;
+    NSInteger x = _selectedIndex.row;
     NSString *highlightValue = @"000";
     if (selectedCell.model.inputValue.length > 0) {
         highlightValue = selectedCell.model.inputValue;
@@ -65,7 +65,7 @@
     
     for (NSInteger i = 0; i < 9; i++) {
         for (NSInteger j = 0; j < 9; j++) {
-            LTSudokuCollectionViewCell *cell = (LTSudokuCollectionViewCell *)[self.sudokuView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+            LTSudokuCollectionViewCell *cell = (LTSudokuCollectionViewCell *)[self.sudokuView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]];
             cell.layer.borderColor = [UIColor blackColor].CGColor;
             cell.layer.borderWidth = .5f;
             if (i == x || j == y ) {
@@ -102,7 +102,7 @@
     LTSudokuCollectionViewCell * cell = (LTSudokuCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.layer.borderColor = [UIColor blackColor].CGColor;
     cell.layer.borderWidth = .5f;
-    [cell setModel:[LTSudokuLogic modelWithX:indexPath.section y:indexPath.row]];
+    [cell setModel:[LTSudokuLogic modelWithX:indexPath.row y:indexPath.section]];
     
     return cell;
 }
@@ -125,10 +125,10 @@
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     _selectedIndex = nil;
-    NSLog(@"x = %ld y = %ld  取消选中",indexPath.section,indexPath.row);
+    NSLog(@"x = %ld y = %ld  取消选中",indexPath.row,indexPath.section);
     for (NSInteger i = 0; i < 9; i++) {
         for (NSInteger j = 0; j < 9; j++) {
-            LTSudokuCollectionViewCell *cell = (LTSudokuCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:j inSection:i]];
+            LTSudokuCollectionViewCell *cell = (LTSudokuCollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:j]];
             cell.backgroundColor = [UIColor whiteColor];
             cell.layer.borderColor = [UIColor blackColor].CGColor;
             cell.layer.borderWidth = .5f;
@@ -219,7 +219,7 @@
         NSLog(@"请选择要操作的方格");
         return nil;
     }
-    return [LTSudokuLogic modelWithX:_selectedIndex.section y:_selectedIndex.row];
+    return [LTSudokuLogic modelWithX:_selectedIndex.row y:_selectedIndex.section];
 }
 
 @end
