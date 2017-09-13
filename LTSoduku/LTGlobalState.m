@@ -50,7 +50,10 @@
     return 5.f;
 }
 
-
++ (CGFloat)sudokuLayerWidth
+{
+    return .5f;
+}
 
 
 @end

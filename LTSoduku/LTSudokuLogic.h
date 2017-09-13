@@ -22,4 +22,6 @@
 
 + (void)reStartGame;
 
++ (BOOL)isGameOver;
+
 @end

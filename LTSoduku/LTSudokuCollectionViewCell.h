@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "LTSodukuCellModel.h"
 
 @interface LTSudokuCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) LTSodukuCellModel *model;
+
+@property (nonatomic, strong) CALayer *borderLayer;
 
 @end

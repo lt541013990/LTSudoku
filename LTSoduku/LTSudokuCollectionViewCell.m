@@ -30,9 +30,11 @@
 - (void)initView
 {
     [self.contentView addSubview:self.valueLabel];
+    [self.contentView.layer addSublayer:self.borderLayer];
     for (UILabel *label in self.noteLabelArray) {
         [self.contentView addSubview:label];
     }
+    
 }
 
 - (void)layoutSubviews
@@ -44,6 +46,7 @@
         label.left = (self.contentView.width - label.width - 4) / 2 * (i % 3) + 2;
         label.top = (self.contentView.height - label.height - 4) / 2 * (i / 3) + 2;
     }
+    self.borderLayer.frame = CGRectMake(self.contentView.left + 1,self.contentView.top + 1 , self.contentView.width - 2, self.contentView.height - 2);
 }
 
 # pragma mark - set
@@ -51,10 +54,15 @@
 
 - (void)setModel:(LTSodukuCellModel *)model
 {
+    self.backgroundColor = [UIColor whiteColor];
+    self.borderLayer.borderWidth = 0;
+    
     _model = model;
     self.valueLabel.textAlignment = NSTextAlignmentCenter;
     self.valueLabel.textColor = self.model.editEnabled == YES ? [GState editableCellTextColor] : [UIColor blackColor];
     self.valueLabel.font = [UIFont systemFontOfSize:15];
+    
+    //    self.valueLabel.text = model.realValue;
     self.valueLabel.text = self.model.editEnabled == YES ? model.inputValue : model.realValue;
     
     if (model.inputValue.length == 0 && model.noteList.count > 0) {
@@ -102,6 +110,15 @@
         }
     }
     return _noteLabelArray;
+}
+
+- (CALayer *)borderLayer
+{
+    if (!_borderLayer)
+    {
+        _borderLayer = [CALayer layer];
+    }
+    return _borderLayer;
 }
 
 @end

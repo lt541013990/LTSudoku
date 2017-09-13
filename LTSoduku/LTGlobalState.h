@@ -30,4 +30,6 @@
 
 + (CGFloat)sudokuButtonSpace;
 
++ (CGFloat)sudokuLayerWidth;
+
 @end

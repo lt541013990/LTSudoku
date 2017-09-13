@@ -140,6 +140,12 @@
 
 - (void)initBlankModelWithLevel:(NSInteger)level
 {
+    for (NSInteger i = 0; i < 9; i++) {
+        for (NSInteger j = 0; j < 9; j++) {
+            [LTSudokuLogic modelWithX:i y:j].editEnabled = NO;
+        }
+    }
+    
     NSInteger x = 0;
     NSInteger y = 0;
     NSInteger loopIndex = 0;
@@ -193,11 +199,27 @@
     return from + (arc4random() % (to - from + 1));
 }
 
+/**
+ *  重置所有model的输入以及note数据
+ */
+- (void)clearModelValue
+{
+    for (NSInteger i = 0; i < 9; i++) {
+        for (NSInteger j = 0; j < 9; j++) {
+            LTSodukuCellModel *model = self.modelArray[i][j];
+            model.realValue = @"";
+            model.inputValue = @"";
+            [model.noteList removeAllObjects];
+            [model.valistValueList removeAllObjects];
+        }
+    }
+}
 
 # pragma mark - public
 
 + (void)reStartGame
 {
+    [[LTSudokuLogic sharedInstance] clearModelValue];
     [[LTSudokuLogic sharedInstance] createSudokuArray];
     [[LTSudokuLogic sharedInstance] initBlankModelWithLevel:[LTSudokuLogic sharedInstance].gameLevel];
 }
@@ -210,6 +232,25 @@
 + (NSString *)valueWithX:(NSInteger)x y:(NSInteger)y
 {
     return [self modelWithX:x y:y].realValue;
+}
+
+/**
+ *  游戏是否结束  结束表明胜利
+ *
+ *  @return YES 胜利 NO 否
+ */
++ (BOOL)isGameOver
+{
+    for (NSInteger x = 0; x < 9; x++) {
+        for (NSInteger y = 0; y < 9; y++) {
+            LTSodukuCellModel *model = [LTSudokuLogic modelWithX:x y:y];
+            if (model.editEnabled && ![model.inputValue isEqualToString:model.realValue]) {
+                return NO;
+            }
+        }
+    }
+    NSLog(@"游戏结束 胜利！");
+    return YES;
 }
 
 
