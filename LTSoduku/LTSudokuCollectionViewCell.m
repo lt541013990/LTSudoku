@@ -46,7 +46,7 @@
         label.left = (self.contentView.width - label.width - 4) / 2 * (i % 3) + 2;
         label.top = (self.contentView.height - label.height - 4) / 2 * (i / 3) + 2;
     }
-    self.borderLayer.frame = CGRectMake(self.contentView.left + 1,self.contentView.top + 1 , self.contentView.width - 2, self.contentView.height - 2);
+    self.borderLayer.frame = CGRectMake(self.contentView.left + 1.5,self.contentView.top + 1 , self.contentView.width - 2.5, self.contentView.height - 2);
 }
 
 # pragma mark - set

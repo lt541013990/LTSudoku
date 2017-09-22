@@ -19,6 +19,7 @@
 		691A2A421F64F67B00B27798 /* note_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 691A2A391F64F67B00B27798 /* note_7@2x.png */; };
 		691A2A431F64F67B00B27798 /* note_8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 691A2A3A1F64F67B00B27798 /* note_8@2x.png */; };
 		691A2A441F64F67B00B27798 /* note_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 691A2A3B1F64F67B00B27798 /* note_9@2x.png */; };
+		695563DE1F74F7AD008C0FD7 /* LTSudokuToolButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 695563DD1F74F7AD008C0FD7 /* LTSudokuToolButton.m */; };
 		6956B7C91F61377F00927312 /* LTSudokuEditToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */; };
 		6968E92D1F5D5082002EB392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E92C1F5D5082002EB392 /* main.m */; };
 		6968E9301F5D5082002EB392 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E92F1F5D5082002EB392 /* AppDelegate.m */; };
@@ -68,6 +69,8 @@
 		691A2A391F64F67B00B27798 /* note_7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note_7@2x.png"; sourceTree = "<group>"; };
 		691A2A3A1F64F67B00B27798 /* note_8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note_8@2x.png"; sourceTree = "<group>"; };
 		691A2A3B1F64F67B00B27798 /* note_9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "note_9@2x.png"; sourceTree = "<group>"; };
+		695563DC1F74F7AD008C0FD7 /* LTSudokuToolButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudokuToolButton.h; sourceTree = "<group>"; };
+		695563DD1F74F7AD008C0FD7 /* LTSudokuToolButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuToolButton.m; sourceTree = "<group>"; };
 		6956B7C71F61377F00927312 /* LTSudokuEditToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudokuEditToolView.h; sourceTree = "<group>"; };
 		6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuEditToolView.m; sourceTree = "<group>"; };
 		6968E9281F5D5082002EB392 /* LTSoduku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTSoduku.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +242,8 @@
 				69133CCC1F5E975D00247AAA /* LTSudokuCollectionViewCell.m */,
 				6956B7C71F61377F00927312 /* LTSudokuEditToolView.h */,
 				6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */,
+				695563DC1F74F7AD008C0FD7 /* LTSudokuToolButton.h */,
+				695563DD1F74F7AD008C0FD7 /* LTSudokuToolButton.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -402,6 +407,7 @@
 				6968E9651F5D573F002EB392 /* LTSudukuGameView.m in Sources */,
 				6968E9331F5D5082002EB392 /* ViewController.m in Sources */,
 				69133CCA1F5E53BA00247AAA /* LTSodukuCellModel.m in Sources */,
+				695563DE1F74F7AD008C0FD7 /* LTSudokuToolButton.m in Sources */,
 				6968E9301F5D5082002EB392 /* AppDelegate.m in Sources */,
 				6968E9701F5D6767002EB392 /* UIView+Extends.m in Sources */,
 				69133CCD1F5E975D00247AAA /* LTSudokuCollectionViewCell.m in Sources */,

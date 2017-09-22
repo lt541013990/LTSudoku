@@ -7,6 +7,7 @@
 //
 
 #import "LTSudokuEditToolView.h"
+#import "LTSudokuToolButton.h"
 
 @interface LTSudokuEditToolView ()
 
@@ -28,22 +29,22 @@
 - (void)initView
 {
     for (NSInteger i = 0; i < 9; i++) {
-        UIButton *button = [self editButtonWithTitle:[NSString stringWithFormat:@"%ld",i + 1]];
-        [button setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"note_%ld", (long)i + 1]] forState:UIControlStateSelected];
-        [button setTitle:@"" forState:UIControlStateSelected];
-        [button addTarget:self action:@selector(editButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        LTSudokuToolButton *button = [self editButtonWithTitle:[NSString stringWithFormat:@"%ld",i + 1]];
+        button.ltBackgroundImage = [UIImage imageNamed:[NSString stringWithFormat:@"note_%ld", (long)i + 1]];
+        [button addTarget:self action:@selector(editButtonClicked:) forControlEvents:UIControlEventTouchDown];
         [self addSubview:button];
         [self.buttonArray addObject:button];
     }
     
-    UIButton *button = [self editButtonWithTitle:@"X"];
+    LTSudokuToolButton *button = [self editButtonWithTitle:@"X"];
+    button.noteTitle = @"X";
     [self addSubview:button];
     [self.buttonArray addObject:button];
-    [button addTarget:self action:@selector(clearButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(clearButtonClicked) forControlEvents:UIControlEventTouchDown];
     
     button = [self editButtonWithTitle:@"输入"];
-    [button setTitle:@"标签" forState:UIControlStateSelected];
-    [button addTarget:self action:@selector(switchButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    button.noteTitle = @"标签";
+    [button addTarget:self action:@selector(switchButtonClicked) forControlEvents:UIControlEventTouchDown];
     [self addSubview:button];
     [self.buttonArray addObject:button];
 }
@@ -52,7 +53,7 @@
 {
     CGFloat buttonWidth = (self.width - [GState sudokuButtonSpace] * 5) / 6.5;
     
-    for (UIButton *button in self.buttonArray) {
+    for (LTSudokuToolButton *button in self.buttonArray) {
         NSInteger index = [self.buttonArray indexOfObject:button];
         if (10 == [self.buttonArray indexOfObject:button]) {
             button.top = 0;
@@ -65,9 +66,10 @@
     }
 }
 
-- (UIButton *)editButtonWithTitle:(NSString *)title
+- (LTSudokuToolButton *)editButtonWithTitle:(NSString *)title
 {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    LTSudokuToolButton *button = [LTSudokuToolButton buttonWithType:UIButtonTypeCustom];
+    button.title = title;
     button.contentMode = UIViewContentModeScaleToFill;
     [button setTitle:title forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont systemFontOfSize:25]];
@@ -88,13 +90,13 @@
 
 - (void)editButtonClicked:(UIButton *)button
 {
-    UIButton *switchButton = [self.buttonArray lastObject];
+    LTSudokuToolButton *switchButton = [self.buttonArray lastObject];
     
-    if (switchButton.selected) {    // 选中状态就是添加note模式
+    if (switchButton.isNoted) {
         if ([self.delegate respondsToSelector:@selector(setNoteValue:)]) {
             [self.delegate setNoteValue:button.titleLabel.text];
         }
-    } else {                        // 未选中则是添加输入的值
+    } else {
         if ([self.delegate respondsToSelector:@selector(setInputValue:)]) {
             [self.delegate setInputValue:button.titleLabel.text];
         }
@@ -104,18 +106,18 @@
 
 - (void)switchButtonClicked
 {
-    UIButton *switchButton = [self.buttonArray lastObject];
+    LTSudokuToolButton *switchButton = [self.buttonArray lastObject];
     
-    if (switchButton.selected) {
-        switchButton.selected = NO;
+    if (switchButton.isNoted) {
+        switchButton.isNoted = NO;
         
     } else {
-        switchButton.selected = YES;
+        switchButton.isNoted = YES;
     }
     
     for (NSInteger i = 0; i < 9; i++) {
-        UIButton *button = self.buttonArray[i];
-        button.selected = switchButton.selected;
+        LTSudokuToolButton *button = self.buttonArray[i];
+        button.isNoted = switchButton.isNoted;
     }
 }
 
