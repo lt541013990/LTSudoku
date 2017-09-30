@@ -21,6 +21,7 @@
 		691A2A441F64F67B00B27798 /* note_9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 691A2A3B1F64F67B00B27798 /* note_9@2x.png */; };
 		695563DE1F74F7AD008C0FD7 /* LTSudokuToolButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 695563DD1F74F7AD008C0FD7 /* LTSudokuToolButton.m */; };
 		6956B7C91F61377F00927312 /* LTSudokuEditToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */; };
+		695DA6CB1F7CE3AC00D40B51 /* LTSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 695DA6CA1F7CE3AC00D40B51 /* LTSettingViewController.m */; };
 		6968E92D1F5D5082002EB392 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E92C1F5D5082002EB392 /* main.m */; };
 		6968E9301F5D5082002EB392 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E92F1F5D5082002EB392 /* AppDelegate.m */; };
 		6968E9331F5D5082002EB392 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6968E9321F5D5082002EB392 /* ViewController.m */; };
@@ -73,6 +74,8 @@
 		695563DD1F74F7AD008C0FD7 /* LTSudokuToolButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuToolButton.m; sourceTree = "<group>"; };
 		6956B7C71F61377F00927312 /* LTSudokuEditToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSudokuEditToolView.h; sourceTree = "<group>"; };
 		6956B7C81F61377F00927312 /* LTSudokuEditToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSudokuEditToolView.m; sourceTree = "<group>"; };
+		695DA6C91F7CE3AC00D40B51 /* LTSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTSettingViewController.h; sourceTree = "<group>"; };
+		695DA6CA1F7CE3AC00D40B51 /* LTSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTSettingViewController.m; sourceTree = "<group>"; };
 		6968E9281F5D5082002EB392 /* LTSoduku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTSoduku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6968E92C1F5D5082002EB392 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6968E92E1F5D5082002EB392 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -152,6 +155,17 @@
 			name = IMG;
 			sourceTree = "<group>";
 		};
+		695DA6C81F7CE37000D40B51 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6968E9311F5D5082002EB392 /* ViewController.h */,
+				6968E9321F5D5082002EB392 /* ViewController.m */,
+				695DA6C91F7CE3AC00D40B51 /* LTSettingViewController.h */,
+				695DA6CA1F7CE3AC00D40B51 /* LTSettingViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		6968E91F1F5D5082002EB392 = {
 			isa = PBXGroup;
 			children = (
@@ -175,14 +189,13 @@
 		6968E92A1F5D5082002EB392 /* LTSoduku */ = {
 			isa = PBXGroup;
 			children = (
+				695DA6C81F7CE37000D40B51 /* ViewController */,
 				69133CC71F5E539600247AAA /* Model */,
 				6968E9661F5D5B7B002EB392 /* GlobalState */,
 				6968E9621F5D56FC002EB392 /* View */,
 				6968E95E1F5D50ED002EB392 /* Extend */,
 				6968E92E1F5D5082002EB392 /* AppDelegate.h */,
 				6968E92F1F5D5082002EB392 /* AppDelegate.m */,
-				6968E9311F5D5082002EB392 /* ViewController.h */,
-				6968E9321F5D5082002EB392 /* ViewController.m */,
 				6968E9341F5D5082002EB392 /* Main.storyboard */,
 				6968E9371F5D5082002EB392 /* Assets.xcassets */,
 				6968E9391F5D5082002EB392 /* LaunchScreen.storyboard */,
@@ -413,6 +426,7 @@
 				69133CCD1F5E975D00247AAA /* LTSudokuCollectionViewCell.m in Sources */,
 				6968E92D1F5D5082002EB392 /* main.m in Sources */,
 				6956B7C91F61377F00927312 /* LTSudokuEditToolView.m in Sources */,
+				695DA6CB1F7CE3AC00D40B51 /* LTSettingViewController.m in Sources */,
 				6968E9691F5D5B9B002EB392 /* LTGlobalState.m in Sources */,
 				69132AAD1F5FCE7C00511D66 /* LTSudokuLogic.m in Sources */,
 				6968E9711F5D6767002EB392 /* UIView+Extension.m in Sources */,

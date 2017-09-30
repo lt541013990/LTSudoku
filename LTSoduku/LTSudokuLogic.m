@@ -23,6 +23,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[LTSudokuLogic alloc] init];
+        manager.gameLevel = [[[NSUserDefaults standardUserDefaults] valueForKey:GAMELEVEL] integerValue];
     });
     return manager;
 }
@@ -253,6 +254,11 @@
     return YES;
 }
 
++ (void)setGameLevel:(NSInteger)level
+{
+    [LTSudokuLogic sharedInstance].gameLevel = level;
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:level] forKey:GAMELEVEL];
+}
 
 # pragma mark - get
 
