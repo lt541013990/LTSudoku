@@ -10,6 +10,11 @@
 #import <UIKit/UIKit.h>
 
 #define GState LTGlobalState
+#define LTGAMERESTART @"gameRestart"
+#define LTGAMEREFRESH @"gameRefresh"
+
+#define LASTGAMEDATA @"lastGameData"    // 退出自动保存的游戏数据
+#define USERGAMEDATA @"userGameData"    // 用户手动存档数据
 
 
 @interface LTGlobalState : NSObject

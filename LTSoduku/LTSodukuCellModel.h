@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LTSodukuCellModel : NSObject
+@interface LTSodukuCellModel : NSObject <NSCoding>
 
 @property (nonatomic, assign) BOOL editEnabled;
 

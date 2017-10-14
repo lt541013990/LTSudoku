@@ -24,7 +24,13 @@
 
 + (NSString *)valueWithX:(NSInteger)x y:(NSInteger)y;
 
-+ (void)reStartGame;
++ (void)restartGame;
+
++ (void)saveGameFileWithKey:(NSString *)key;
+
++ (BOOL)loadGameFileAndRestartWithKey:(NSString *)key;
+
++ (void)initGameData;
 
 + (BOOL)isGameOver;
 

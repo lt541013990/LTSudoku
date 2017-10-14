@@ -8,6 +8,7 @@
 
 #import "LTSudokuLogic.h"
 #import "LTSodukuCellModel.h"
+#import "LTSudukuGameView.h"
 
 @interface LTSudokuLogic ()
 
@@ -158,10 +159,10 @@
             totalBlankCount = 2;
             break;
         case 1:
-            totalBlankCount = 4;
+            totalBlankCount = 5;
             break;
         case 2:
-            totalBlankCount = 8;
+            totalBlankCount = 6;
             break;
         default:
             totalBlankCount = 2;
@@ -217,12 +218,36 @@
 }
 
 # pragma mark - public
+// 存档
++ (void)saveGameFileWithKey:(NSString *)key
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[LTSudokuLogic sharedInstance].modelArray];
+    [[NSUserDefaults standardUserDefaults] setValue:data forKey:key];
+}
 
-+ (void)reStartGame
+// 读档
++ (BOOL)loadGameFileAndRestartWithKey:(NSString *)key
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] valueForKey:key];
+    if (!data) {
+        return NO;
+    }
+    [LTSudokuLogic sharedInstance].modelArray = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    [[NSNotificationCenter defaultCenter] postNotificationName:LTGAMEREFRESH object:nil];
+    return YES;
+}
+
++ (void)restartGame
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:LTGAMERESTART object:nil];
+}
+
++ (void)initGameData
 {
     [[LTSudokuLogic sharedInstance] clearModelValue];
     [[LTSudokuLogic sharedInstance] createSudokuArray];
     [[LTSudokuLogic sharedInstance] initBlankModelWithLevel:[LTSudokuLogic sharedInstance].gameLevel];
+    
 }
 
 + (LTSodukuCellModel *)modelWithX:(NSInteger)x y:(NSInteger)y

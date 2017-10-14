@@ -62,6 +62,13 @@
     self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], (self.width - [GState sudokuButtonSpace] * 5) / 6.5 * 2 + [GState sudokuButtonSpace]);
 }
 
+# pragma mark - public
+
+- (void)restartGame
+{
+    [self.sudokuView reloadData];
+}
+
 # pragma mark - private
 
 // 开始新的一局游戏的时候需要重置cell的背景颜色与边框颜色等
@@ -172,8 +179,7 @@
             UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:nil message:@"YOU WIN!" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"下一局" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 _selectedIndex = nil;
-                [LTSudokuLogic reStartGame];
-                [self.sudokuView reloadData];
+                [LTSudokuLogic restartGame];
             }];
             [alertVC addAction:action];
             [self.window.rootViewController presentViewController:alertVC animated:NO completion:nil];

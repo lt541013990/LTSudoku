@@ -105,6 +105,7 @@
             UILabel *label = [[UILabel alloc] init];
             label.font = [UIFont systemFontOfSize:10];
             label.text = [NSString stringWithFormat:@"%ld",(long)i + 1];
+            label.textColor = [UIColor flatGrayColor];
             label.hidden = YES;
             [_noteLabelArray addObject:label];
         }

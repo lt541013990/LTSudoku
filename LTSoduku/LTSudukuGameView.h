@@ -10,4 +10,6 @@
 
 @interface LTSudukuGameView : UIView
 
+- (void)restartGame;
+
 @end
