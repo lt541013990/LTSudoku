@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UICollectionView *sudokuView;
 @property (nonatomic, strong) LTSudokuEditToolView *toolView;
+@property (nonatomic, strong) UILabel *timeLabel;
 
 @property (nonatomic, readonly) LTSodukuCellModel *selectedCellModel;
 
@@ -36,6 +37,7 @@
 
 - (void)initView
 {
+    [self addSubview:self.timeLabel];
     [self addSubview:self.sudokuView];
     [self addSubview:self.toolView];
     
@@ -58,7 +60,9 @@
 
 - (void)layoutSubviews
 {
-    self.sudokuView.frame = CGRectMake([GState defaultTopSpace], -64, [GState sudokuViewWidth], [GState sudokuViewWidth] + 64);
+    self.timeLabel.size = CGSizeMake(50, 20);
+    self.timeLabel.center = CGPointMake(self.width / 2, self.timeLabel.height / 2);
+    self.sudokuView.frame = CGRectMake([GState defaultTopSpace], self.timeLabel.bottom + 5, [GState sudokuViewWidth], [GState sudokuViewWidth]);
     self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], (self.width - [GState sudokuButtonSpace] * 5) / 6.5 * 2 + [GState sudokuButtonSpace]);
 }
 
@@ -67,6 +71,14 @@
 - (void)restartGame
 {
     [self.sudokuView reloadData];
+    self.timeLabel.text = @"0";
+}
+
+- (void)timerCallBack:(NSTimer *)timer
+{
+    NSTimeInterval time = [self.timeLabel.text integerValue];
+    time += timer.timeInterval;
+    self.timeLabel.text = [NSString stringWithFormat:@"%.0f", time];
 }
 
 # pragma mark - private
@@ -115,6 +127,8 @@
     
     selectedCell.borderLayer.borderWidth = 1.5f;
 }
+
+
 
 # pragma mark - CollectionViewDatasource
 
@@ -256,6 +270,17 @@
         return nil;
     }
     return [LTSudokuLogic modelWithX:_selectedIndex.row y:_selectedIndex.section];
+}
+
+- (UILabel *)timeLabel
+{
+    if (!_timeLabel)
+    {
+        _timeLabel = [[UILabel alloc] init];
+        _timeLabel.textAlignment = NSTextAlignmentCenter;
+        _timeLabel.text = @"0";
+    }
+    return _timeLabel;
 }
 
 @end

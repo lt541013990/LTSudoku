@@ -78,7 +78,7 @@
     switch (indexPath.row) {
         case 0:     // 难度选择
         {
-            [self presentViewController:self.alertVC animated:NO completion:nil];
+            [self presentViewController:self.alertVC animated:YES completion:nil];
             break;
         }
             
@@ -105,7 +105,8 @@
             [LTSudokuLogic setGameLevel:2];
             [self.tableView reloadData];
         }]];
-
+        
+        [_alertVC addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
     }
     
     return _alertVC;

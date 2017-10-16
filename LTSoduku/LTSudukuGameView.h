@@ -12,4 +12,6 @@
 
 - (void)restartGame;
 
+- (void)timerCallBack:(NSTimer *)timer;
+
 @end
