@@ -77,7 +77,7 @@
             return NO;
         }
         
-        model.realValue = @"";      //回溯前充值当前的value
+        model.realValue = @"";      //回溯前重置当前的value
         if (y != 0) {
             if (![self fillModelWithX:x y:y - 1]) {
                 return NO;
@@ -91,7 +91,7 @@
         // 回溯之后 继续选择可选值来填充
         [self initValidlistWithX:x y:y];
         if (![self fillModelWithX:x y:y]) {
-            NO;
+            return NO;
         }
     }
     return YES;
