@@ -110,7 +110,6 @@
     
     if (switchButton.isNoted) {
         switchButton.isNoted = NO;
-        
     } else {
         switchButton.isNoted = YES;
     }

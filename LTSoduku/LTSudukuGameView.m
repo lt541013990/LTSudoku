@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) UICollectionView *sudokuView;
 @property (nonatomic, strong) LTSudokuEditToolView *toolView;
+@property (nonatomic, strong) UIButton *saveButton;
+@property (nonatomic, strong) UIButton *loadButton;
 
 @property (nonatomic, readonly) LTSodukuCellModel *selectedCellModel;
 
@@ -38,6 +40,8 @@
 {
     [self addSubview:self.sudokuView];
     [self addSubview:self.toolView];
+    [self addSubview:self.saveButton];
+    [self addSubview:self.loadButton];
     
     for (NSInteger i = 0; i < 10; i++) {
         UIView *xLineView = [[UIView alloc] init];
@@ -60,6 +64,14 @@
 {
     self.sudokuView.frame = CGRectMake([GState defaultTopSpace], 0, [GState sudokuViewWidth], [GState sudokuViewWidth]);
     self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], (self.width - [GState sudokuButtonSpace] * 5) / 6.5 * 2 + [GState sudokuButtonSpace]);
+    self.saveButton.left = self.toolView.left;
+    self.saveButton.top = self.toolView.bottom + 5;
+    self.saveButton.size = CGSizeMake(60, 30);
+    
+    self.loadButton.size = self.saveButton.size;
+    self.loadButton.right = self.width - [GState defaultTopSpace];
+    self.loadButton.top = self.saveButton.top;
+    
 }
 
 # pragma mark - public
@@ -117,7 +129,17 @@
     selectedCell.borderLayer.borderWidth = 1.5f;
 }
 
+# pragma mark - action
 
+- (void)saveButtonClicked
+{
+    [LTSudokuLogic saveGameFileWithKey:USERGAMEDATA];
+}
+
+- (void)loadButtonClicked
+{
+    [LTSudokuLogic loadGameFileAndRestartWithKey:USERGAMEDATA];
+}
 
 # pragma mark - CollectionViewDatasource
 
@@ -250,6 +272,28 @@
         _toolView.delegate = self;
     }
     return _toolView;
+}
+
+- (UIButton *)saveButton
+{
+    if (!_saveButton) {
+        _saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _saveButton.backgroundColor = [UIColor flatGrayColor];
+        [_saveButton setTitle:@"存档" forState:UIControlStateNormal];
+        [_saveButton addTarget:self action:@selector(saveButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _saveButton;
+}
+
+- (UIButton *)loadButton
+{
+    if (!_loadButton) {
+        _loadButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _loadButton.backgroundColor = [UIColor flatGrayColor];
+        [_loadButton setTitle:@"读档" forState:UIControlStateNormal];
+        [_loadButton addTarget:self action:@selector(loadButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _loadButton;
 }
 
 - (LTSodukuCellModel *)selectedCellModel
