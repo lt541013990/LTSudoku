@@ -23,6 +23,9 @@
     self.navigationItem.title = @"数独";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    // 添加渐变背景
+    self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.97 blue:1.0 alpha:1.0];
+    
     self.sudokuView = [[LTSudukuGameView alloc] initWithFrame:CGRectMake(0,[GState defaultTopSpace] + 64, self.view.width, self.view.height - 64)];
     [self.view addSubview:self.sudokuView];
     

@@ -15,6 +15,9 @@
 
 #define LASTGAMEDATA @"lastGameData"    // 退出自动保存的游戏数据
 #define USERGAMEDATA @"userGameData"    // 用户手动存档数据
+#define CURRENTLEVEL @"currentLevel"    // 当前关卡
+#define MAXUNLOCKEDLEVEL @"maxUnlockedLevel"    // 最高解锁关卡
+#define MAXLEVEL 20                     // 最大关卡数
 
 
 @interface LTGlobalState : NSObject
