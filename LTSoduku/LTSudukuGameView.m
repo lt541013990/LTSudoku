@@ -29,6 +29,15 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        // 添加渐变背景
+        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+        gradientLayer.frame = frame;
+        gradientLayer.colors = @[(id)[UIColor colorWithRed:0.95 green:0.97 blue:1.0 alpha:1.0].CGColor,
+                                  (id)[UIColor colorWithRed:0.90 green:0.94 blue:0.98 alpha:1.0].CGColor];
+        gradientLayer.startPoint = CGPointMake(0.5, 0);
+        gradientLayer.endPoint = CGPointMake(0.5, 1);
+        [self.layer insertSublayer:gradientLayer atIndex:0];
+        
         [self initView];
     }
     return self;
@@ -64,13 +73,14 @@
 
 - (void)layoutSubviews
 {
-    self.levelLabel.frame = CGRectMake([GState defaultTopSpace], 0, [GState sudokuViewWidth], 30);
+    self.levelLabel.frame = CGRectMake([GState defaultTopSpace], 5, [GState sudokuViewWidth], 40);
     
-    self.sudokuView.frame = CGRectMake([GState defaultTopSpace], self.levelLabel.bottom + 5, [GState sudokuViewWidth], [GState sudokuViewWidth]);
+    self.sudokuView.frame = CGRectMake([GState defaultTopSpace], self.levelLabel.bottom + 10, [GState sudokuViewWidth], [GState sudokuViewWidth]);
     self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], (self.width - [GState sudokuButtonSpace] * 5) / 6.5 * 2 + [GState sudokuButtonSpace]);
+    
     self.saveButton.left = self.toolView.left;
-    self.saveButton.top = self.toolView.bottom + 5;
-    self.saveButton.size = CGSizeMake(60, 30);
+    self.saveButton.top = self.toolView.bottom + 10;
+    self.saveButton.size = CGSizeMake(80, 35);
     
     self.loadButton.size = self.saveButton.size;
     self.loadButton.right = self.width - [GState defaultTopSpace];
@@ -215,28 +225,32 @@
             NSInteger currentLevel = [LTSudokuLogic getCurrentLevel];
             NSInteger maxLevel = [LTSudokuLogic getMaxUnlockedLevel];
             
-            NSString *message = [NSString stringWithFormat:@"恭喜过关！\n完成第%ld关", (long)currentLevel];
-            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"胜利！" message:message preferredStyle:UIAlertControllerStyleAlert];
+            NSString *title = @"🎉 恭喜过关！";
+            NSString *message = [NSString stringWithFormat:@"\n完美完成第 %ld 关\n%@", (long)currentLevel, [LTSudokuLogic getLevelName:currentLevel]];
+            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
             
             // 解锁下一关
             if (currentLevel < MAXLEVEL) {
                 [LTSudokuLogic unlockNextLevel];
                 
-                UIAlertAction *nextAction = [UIAlertAction actionWithTitle:@"下一关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertAction *nextAction = [UIAlertAction actionWithTitle:@"▶️ 下一关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     _selectedIndex = nil;
                     [LTSudokuLogic setCurrentLevel:currentLevel + 1];
                     [LTSudokuLogic restartGame];
                 }];
                 [alertVC addAction:nextAction];
                 
-                UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"重玩本关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"🔄 重玩本关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     _selectedIndex = nil;
                     [LTSudokuLogic restartGame];
                 }];
                 [alertVC addAction:retryAction];
             } else {
                 // 已经是最后一关
-                UIAlertAction *action = [UIAlertAction actionWithTitle:@"太棒了！" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                message = @"\n🏆 恭喜通关所有关卡！\n你真是数独大师！";
+                alertVC = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"🎊 太棒了！" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     _selectedIndex = nil;
                     [LTSudokuLogic restartGame];
                 }];
@@ -295,6 +309,13 @@
         _sudokuView.dataSource = self;
         [_sudokuView registerClass:[LTSudokuCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         
+        // 添加阴影效果
+        _sudokuView.layer.shadowColor = [UIColor blackColor].CGColor;
+        _sudokuView.layer.shadowOffset = CGSizeMake(0, 4);
+        _sudokuView.layer.shadowOpacity = 0.15;
+        _sudokuView.layer.shadowRadius = 8;
+        _sudokuView.layer.cornerRadius = 4;
+        
     }
     return _sudokuView;
 }
@@ -313,8 +334,18 @@
 {
     if (!_saveButton) {
         _saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _saveButton.backgroundColor = [UIColor flatGrayColor];
-        [_saveButton setTitle:@"存档" forState:UIControlStateNormal];
+        _saveButton.backgroundColor = [UIColor flatGreenColor];
+        [_saveButton setTitle:@"💾 存档" forState:UIControlStateNormal];
+        [_saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _saveButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        
+        // 圆角和阴影
+        _saveButton.layer.cornerRadius = 8;
+        _saveButton.layer.shadowColor = [UIColor blackColor].CGColor;
+        _saveButton.layer.shadowOffset = CGSizeMake(0, 2);
+        _saveButton.layer.shadowOpacity = 0.2;
+        _saveButton.layer.shadowRadius = 3;
+        
         [_saveButton addTarget:self action:@selector(saveButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _saveButton;
@@ -324,8 +355,18 @@
 {
     if (!_loadButton) {
         _loadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _loadButton.backgroundColor = [UIColor flatGrayColor];
-        [_loadButton setTitle:@"读档" forState:UIControlStateNormal];
+        _loadButton.backgroundColor = [UIColor flatOrangeColor];
+        [_loadButton setTitle:@"📂 读档" forState:UIControlStateNormal];
+        [_loadButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _loadButton.titleLabel.font = [UIFont boldSystemFontOfSize:15];
+        
+        // 圆角和阴影
+        _loadButton.layer.cornerRadius = 8;
+        _loadButton.layer.shadowColor = [UIColor blackColor].CGColor;
+        _loadButton.layer.shadowOffset = CGSizeMake(0, 2);
+        _loadButton.layer.shadowOpacity = 0.2;
+        _loadButton.layer.shadowRadius = 3;
+        
         [_loadButton addTarget:self action:@selector(loadButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loadButton;
@@ -336,8 +377,21 @@
     if (!_levelLabel) {
         _levelLabel = [[UILabel alloc] init];
         _levelLabel.textAlignment = NSTextAlignmentCenter;
-        _levelLabel.font = [UIFont boldSystemFontOfSize:18];
-        _levelLabel.textColor = [UIColor flatBlueColor];
+        _levelLabel.font = [UIFont boldSystemFontOfSize:20];
+        _levelLabel.textColor = [UIColor whiteColor];
+        
+        // 添加渐变背景
+        _levelLabel.backgroundColor = [UIColor flatBlueColor];
+        _levelLabel.layer.cornerRadius = 8;
+        _levelLabel.layer.masksToBounds = YES;
+        
+        // 添加阴影效果
+        _levelLabel.layer.shadowColor = [UIColor blackColor].CGColor;
+        _levelLabel.layer.shadowOffset = CGSizeMake(0, 2);
+        _levelLabel.layer.shadowOpacity = 0.2;
+        _levelLabel.layer.shadowRadius = 4;
+        _levelLabel.layer.masksToBounds = NO;
+        
         [self updateLevelLabel];
     }
     return _levelLabel;
