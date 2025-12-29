@@ -159,10 +159,16 @@
             totalBlankCount = 2;
             break;
         case 1:
-            totalBlankCount = 5;
+            totalBlankCount = 4;
             break;
         case 2:
             totalBlankCount = 6;
+            break;
+        case 3:
+            totalBlankCount = 7;
+            break;
+        case 4:
+            totalBlankCount = 8;
             break;
         default:
             totalBlankCount = 2;

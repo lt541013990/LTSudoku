@@ -59,7 +59,7 @@
         case 0:     // 难度选择
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"settingCell"];
             cell.textLabel.text = @"难度";
-            cell.detailTextLabel.text = @[@"低级",@"中级",@"高级"][[LTSudokuLogic sharedInstance].gameLevel];
+            cell.detailTextLabel.text = @[@"低级",@"中级",@"高级",@"专家级",@"骨灰级"][[LTSudokuLogic sharedInstance].gameLevel];
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             break;
@@ -103,6 +103,14 @@
         }]];
         [_alertVC addAction:[UIAlertAction actionWithTitle:@"高级" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [LTSudokuLogic setGameLevel:2];
+            [self.tableView reloadData];
+        }]];
+        [_alertVC addAction:[UIAlertAction actionWithTitle:@"专家级" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [LTSudokuLogic setGameLevel:3];
+            [self.tableView reloadData];
+        }]];
+        [_alertVC addAction:[UIAlertAction actionWithTitle:@"骨灰级" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [LTSudokuLogic setGameLevel:4];
             [self.tableView reloadData];
         }]];
         
