@@ -380,17 +380,10 @@
         _levelLabel.font = [UIFont boldSystemFontOfSize:20];
         _levelLabel.textColor = [UIColor whiteColor];
         
-        // 添加渐变背景
+        // 添加渐变背景和圆角
         _levelLabel.backgroundColor = [UIColor flatBlueColor];
         _levelLabel.layer.cornerRadius = 8;
         _levelLabel.layer.masksToBounds = YES;
-        
-        // 添加阴影效果
-        _levelLabel.layer.shadowColor = [UIColor blackColor].CGColor;
-        _levelLabel.layer.shadowOffset = CGSizeMake(0, 2);
-        _levelLabel.layer.shadowOpacity = 0.2;
-        _levelLabel.layer.shadowRadius = 4;
-        _levelLabel.layer.masksToBounds = NO;
         
         [self updateLevelLabel];
     }
