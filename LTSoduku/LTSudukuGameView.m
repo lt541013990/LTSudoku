@@ -16,6 +16,7 @@
 @property (nonatomic, strong) LTSudokuEditToolView *toolView;
 @property (nonatomic, strong) UIButton *saveButton;
 @property (nonatomic, strong) UIButton *loadButton;
+@property (nonatomic, strong) UILabel *levelLabel;
 
 @property (nonatomic, readonly) LTSodukuCellModel *selectedCellModel;
 
@@ -42,6 +43,7 @@
     [self addSubview:self.toolView];
     [self addSubview:self.saveButton];
     [self addSubview:self.loadButton];
+    [self addSubview:self.levelLabel];
     
     for (NSInteger i = 0; i < 10; i++) {
         UIView *xLineView = [[UIView alloc] init];
@@ -62,7 +64,9 @@
 
 - (void)layoutSubviews
 {
-    self.sudokuView.frame = CGRectMake([GState defaultTopSpace], 0, [GState sudokuViewWidth], [GState sudokuViewWidth]);
+    self.levelLabel.frame = CGRectMake([GState defaultTopSpace], 0, [GState sudokuViewWidth], 30);
+    
+    self.sudokuView.frame = CGRectMake([GState defaultTopSpace], self.levelLabel.bottom + 5, [GState sudokuViewWidth], [GState sudokuViewWidth]);
     self.toolView.frame = CGRectMake(self.sudokuView.left, self.sudokuView.bottom + [GState defaultTopSpace], [GState sudokuViewWidth], (self.width - [GState sudokuButtonSpace] * 5) / 6.5 * 2 + [GState sudokuButtonSpace]);
     self.saveButton.left = self.toolView.left;
     self.saveButton.top = self.toolView.bottom + 5;
@@ -79,10 +83,17 @@
 - (void)restartGame
 {
     [self.sudokuView reloadData];
+    [self updateLevelLabel];
 }
 
 
 # pragma mark - private
+
+- (void)updateLevelLabel
+{
+    NSInteger currentLevel = [LTSudokuLogic getCurrentLevel];
+    self.levelLabel.text = [LTSudokuLogic getLevelName:currentLevel];
+}
 
 // 开始新的一局游戏的时候需要重置cell的背景颜色与边框颜色等
 - (void)resetCellColor
@@ -201,12 +212,36 @@
         [self collectionView:self.sudokuView didSelectItemAtIndexPath:_selectedIndex];
         
         if ([LTSudokuLogic isGameOver]) {
-            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:nil message:@"YOU WIN!" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:@"下一局" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                _selectedIndex = nil;
-                [LTSudokuLogic restartGame];
-            }];
-            [alertVC addAction:action];
+            NSInteger currentLevel = [LTSudokuLogic getCurrentLevel];
+            NSInteger maxLevel = [LTSudokuLogic getMaxUnlockedLevel];
+            
+            NSString *message = [NSString stringWithFormat:@"恭喜过关！\n完成第%ld关", (long)currentLevel];
+            UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"胜利！" message:message preferredStyle:UIAlertControllerStyleAlert];
+            
+            // 解锁下一关
+            if (currentLevel < 20) {
+                [LTSudokuLogic unlockNextLevel];
+                
+                UIAlertAction *nextAction = [UIAlertAction actionWithTitle:@"下一关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    _selectedIndex = nil;
+                    [LTSudokuLogic setCurrentLevel:currentLevel + 1];
+                    [LTSudokuLogic restartGame];
+                }];
+                [alertVC addAction:nextAction];
+                
+                UIAlertAction *retryAction = [UIAlertAction actionWithTitle:@"重玩本关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    _selectedIndex = nil;
+                    [LTSudokuLogic restartGame];
+                }];
+                [alertVC addAction:retryAction];
+            } else {
+                // 已经是最后一关
+                UIAlertAction *action = [UIAlertAction actionWithTitle:@"太棒了！" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    _selectedIndex = nil;
+                    [LTSudokuLogic restartGame];
+                }];
+                [alertVC addAction:action];
+            }
             [self.window.rootViewController presentViewController:alertVC animated:NO completion:nil];
         }
     } else {
@@ -294,6 +329,18 @@
         [_loadButton addTarget:self action:@selector(loadButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _loadButton;
+}
+
+- (UILabel *)levelLabel
+{
+    if (!_levelLabel) {
+        _levelLabel = [[UILabel alloc] init];
+        _levelLabel.textAlignment = NSTextAlignmentCenter;
+        _levelLabel.font = [UIFont boldSystemFontOfSize:18];
+        _levelLabel.textColor = [UIColor flatBlueColor];
+        [self updateLevelLabel];
+    }
+    return _levelLabel;
 }
 
 - (LTSodukuCellModel *)selectedCellModel

@@ -25,6 +25,13 @@
     dispatch_once(&onceToken, ^{
         manager = [[LTSudokuLogic alloc] init];
         manager.gameLevel = [[[NSUserDefaults standardUserDefaults] valueForKey:GAMELEVEL] integerValue];
+        
+        // 初始化关卡数据
+        NSNumber *savedLevel = [[NSUserDefaults standardUserDefaults] valueForKey:CURRENTLEVEL];
+        manager.currentLevel = savedLevel ? [savedLevel integerValue] : 1;
+        
+        NSNumber *savedMaxLevel = [[NSUserDefaults standardUserDefaults] valueForKey:MAXUNLOCKEDLEVEL];
+        manager.maxUnlockedLevel = savedMaxLevel ? [savedMaxLevel integerValue] : 1;
     });
     return manager;
 }
@@ -252,8 +259,10 @@
 {
     [[LTSudokuLogic sharedInstance] clearModelValue];
     [[LTSudokuLogic sharedInstance] createSudokuArray];
-    [[LTSudokuLogic sharedInstance] initBlankModelWithLevel:[LTSudokuLogic sharedInstance].gameLevel];
     
+    // 根据当前关卡获取难度
+    NSInteger difficulty = [self getDifficultyForLevel:[LTSudokuLogic sharedInstance].currentLevel];
+    [[LTSudokuLogic sharedInstance] initBlankModelWithLevel:difficulty];
 }
 
 + (LTSodukuCellModel *)modelWithX:(NSInteger)x y:(NSInteger)y
@@ -289,6 +298,80 @@
 {
     [LTSudokuLogic sharedInstance].gameLevel = level;
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:level] forKey:GAMELEVEL];
+}
+
+# pragma mark - 关卡管理方法
+
+/**
+ *  获取当前关卡
+ */
++ (NSInteger)getCurrentLevel
+{
+    return [LTSudokuLogic sharedInstance].currentLevel;
+}
+
+/**
+ *  设置当前关卡
+ */
++ (void)setCurrentLevel:(NSInteger)level
+{
+    [LTSudokuLogic sharedInstance].currentLevel = level;
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:level] forKey:CURRENTLEVEL];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+/**
+ *  获取最高解锁关卡
+ */
++ (NSInteger)getMaxUnlockedLevel
+{
+    return [LTSudokuLogic sharedInstance].maxUnlockedLevel;
+}
+
+/**
+ *  解锁下一关
+ */
++ (void)unlockNextLevel
+{
+    NSInteger nextLevel = [LTSudokuLogic sharedInstance].currentLevel + 1;
+    if (nextLevel > [LTSudokuLogic sharedInstance].maxUnlockedLevel && nextLevel <= 20) {
+        [LTSudokuLogic sharedInstance].maxUnlockedLevel = nextLevel;
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:nextLevel] forKey:MAXUNLOCKEDLEVEL];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+/**
+ *  根据关卡获取难度等级
+ *  关卡 1-4: 难度0 (低级)
+ *  关卡 5-8: 难度1 (中级)
+ *  关卡 9-12: 难度2 (高级)
+ *  关卡 13-16: 难度3 (专家级)
+ *  关卡 17-20: 难度4 (骨灰级)
+ */
++ (NSInteger)getDifficultyForLevel:(NSInteger)level
+{
+    if (level <= 4) {
+        return 0;
+    } else if (level <= 8) {
+        return 1;
+    } else if (level <= 12) {
+        return 2;
+    } else if (level <= 16) {
+        return 3;
+    } else {
+        return 4;
+    }
+}
+
+/**
+ *  获取关卡名称
+ */
++ (NSString *)getLevelName:(NSInteger)level
+{
+    NSInteger difficulty = [self getDifficultyForLevel:level];
+    NSArray *difficultyNames = @[@"低级", @"中级", @"高级", @"专家级", @"骨灰级"];
+    return [NSString stringWithFormat:@"第%ld关 - %@", (long)level, difficultyNames[difficulty]];
 }
 
 # pragma mark - get
