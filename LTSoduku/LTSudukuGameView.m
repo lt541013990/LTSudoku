@@ -219,7 +219,7 @@
             UIAlertController * alertVC = [UIAlertController alertControllerWithTitle:@"胜利！" message:message preferredStyle:UIAlertControllerStyleAlert];
             
             // 解锁下一关
-            if (currentLevel < 20) {
+            if (currentLevel < MAXLEVEL) {
                 [LTSudokuLogic unlockNextLevel];
                 
                 UIAlertAction *nextAction = [UIAlertAction actionWithTitle:@"下一关" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

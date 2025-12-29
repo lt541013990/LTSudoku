@@ -334,7 +334,7 @@
 + (void)unlockNextLevel
 {
     NSInteger nextLevel = [LTSudokuLogic sharedInstance].currentLevel + 1;
-    if (nextLevel > [LTSudokuLogic sharedInstance].maxUnlockedLevel && nextLevel <= 20) {
+    if (nextLevel > [LTSudokuLogic sharedInstance].maxUnlockedLevel && nextLevel <= MAXLEVEL) {
         [LTSudokuLogic sharedInstance].maxUnlockedLevel = nextLevel;
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInteger:nextLevel] forKey:MAXUNLOCKEDLEVEL];
         [[NSUserDefaults standardUserDefaults] synchronize];
